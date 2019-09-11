@@ -7,12 +7,24 @@ namespace BDSA2019.Assignment02
     {
         public static IEnumerable<T> Flatten<T>(IEnumerable<IEnumerable<T>> items)
         {
-            throw new NotImplementedException();
+            foreach (var innerStream in items)
+            {
+                foreach (var item in innerStream)
+                {
+                    yield return item;
+                }
+            }
         }
 
         public static IEnumerable<T> Filter<T>(IEnumerable<T> items, Predicate<T> predicate)
         {
-            throw new NotImplementedException();
+            foreach (var item in items)
+            {
+                if(predicate(item))
+                {
+                    yield return item;
+                }
+            }
         }
     }
 }
