@@ -31,12 +31,12 @@ namespace BDSA2019.Assignment02
 
         public static IEnumerable<string> InnerText(string html, string tag)
         {
-            string pattern = @"<" + tag + @" ?.*?>(.*?)<\/" + tag + @">";
+            string pattern = @"<(" + tag + @") ?.*?>(.*?)<\/\1>";
             string pattern2 = @"<.*?>";
         
             foreach (Match m in Regex.Matches(html, pattern))
             {
-                var match = m.Groups[1].Value;
+                var match = m.Groups[2].Value;
                 match = Regex.Replace(match, pattern2, "");
                 yield return match;
             }
